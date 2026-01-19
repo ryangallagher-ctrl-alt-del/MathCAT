@@ -600,7 +600,7 @@ fn add_ids(mathml: Element) -> Element {
     if random_part.len() < 4 {
         random_part.push_str("a1b2");      // needs to be at least four chars
     }
-    let prefix = "M".to_string() + &time_part[time_part.len() - 3..] + &random_part[random_part.len() - 4..] + "-"; // begin with letter
+    let prefix = "M".to_string() + &time_part[time_part.saturating_sub(3)..] + &random_part[random_part.saturating_sub(4)..] + "-"; // begin with letter
     add_ids_to_all(mathml, &prefix, 0);
     return mathml;
 
